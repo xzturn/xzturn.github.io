@@ -1,2 +1,3 @@
-# xzturn.github.io
-XZturn's Blog
+# Journal of Zturn
+
+Zen, Beginner's Mind.
