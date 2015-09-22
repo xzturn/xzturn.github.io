@@ -7,3 +7,5 @@
 # Ignore all tempfiles.
 *~
 Gemfile.lock
+_site
+.sass-cache
