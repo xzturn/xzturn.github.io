@@ -1,0 +1,117 @@
+---
+layout: post
+title:  "Github 协作开发与个人博客搭建"
+date:   2015-09-22 12:58:41
+categories: blog
+---
+作为一个程序员，要想快速提升自己，兴趣驱动地参与到 [open-source](https://en.wikipedia.org/wiki/Open_source) 中是一个非常棒方式。本文仅是抛砖引玉，简单记录一下在 [github][github] 上进行协作开发与搭建个人博客的方式。
+
+## <span style="font-size: 120%; color: black; font-weight: 600;">&#120793;</span>. 协作开发
+
+先介绍一下你作为一个 contributor，如何参与到一个已有的项目中去。
+
+### <span style="font-size: 120%; color: gray; font-weight: 600;">&#9312;</span> Set Up Git
+
+{% highlight bash %}
+$ git config --global user.name "YOUR NAME"
+$ git config --global user.email "YOUR EMAIL ADDRESS"
+{% endhighlight %}
+
+### <span style="font-size: 120%; color: gray; font-weight: 600;">&#9313;</span> Fork A Repo
+
+以 [shadowsocks/shadowsocks-go](https://github.com/shadowsocks/shadowsocks-go) 为例，先在这个 repo 的页面上点 "Fork"，这个 project 就会 fork 都你自己的 github 空间，然后 clone 到本地：
+{% highlight bash %}
+$ git clone https://github.com/YOUR-USERNAME/shadowsocks-go.git
+{% endhighlight %}
+下面看一下 remote 信息：
+{% highlight bash %}
+$ git remote -v
+origin  https://github.com/YOUR_USERNAME/shadowsocks-go.git (fetch)
+origin  https://github.com/YOUR_USERNAME/shadowsocks-go.git (push)
+{% endhighlight %}
+增加 upstream 信息
+{% highlight bash %}
+$ git remote add upstream https://github.com/shadowsocks/shadowsocks-go.git
+{% endhighlight %}
+再验证，remote 信息应该变成了这样:
+{% highlight bash %}
+$ git remote -v
+origin    https://github.com/YOUR_USERNAME/shadowsocks-go.git (fetch)
+origin    https://github.com/YOUR_USERNAME/shadowsocks-go.git (push)
+upstream  https://github.com/shadowsocks/shadowsocks-go.git (fetch)
+upstream  https://github.com/shadowsocks/shadowsocks-go.git (push)
+{% endhighlight %}
+
+### <span style="font-size: 120%; color: gray; font-weight: 600;">&#9314;</span> Sync A Fork
+
+先从 upstream 获取最新的修改
+{% highlight bash %}
+$ git fetch upstream
+remote: Counting objects: 75, done.
+remote: Compressing objects: 100% (53/53), done.
+remote: Total 62 (delta 27), reused 44 (delta 9)
+Unpacking objects: 100% (62/62), done.
+From https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY
+* [new branch]      master     -> upstream/master
+{% endhighlight %}
+然后将本地的 fork 切换到 master
+{% highlight bash %}
+$ git checkout master
+Switched to branch 'master'
+{% endhighlight %}
+最后将 upstream 的 master 的修改 merge 到本地的 master（注：此 merge **不会** 使得你本地的修改丢掉）
+{% highlight bash %}
+$ git merge upstream/master
+{% endhighlight %}
+
+## <span style="font-size: 120%; color: black; font-weight: 600;">&#120794;</span>. 个人博客搭建
+
+再介绍一下你自己作为一个 owner，如何创建与维护一个 project。
+
+正好 [github][github] 提供了一个非常方便的搭建网页的功能: [Pages][github-pages] ，既可以搭建个人主页，也可以搭建项目主页。下面就以搭建个人博客主页为例，简单记录之。
+
+### <span style="font-size: 120%; color: gray; font-weight: 600;">&#9312;</span> Create A Repo
+
+在你自己的 [github][github] 页面创建一个新的以你的用户名命名的 repo: [YOUR_USER_NAME.github.io][xzturn] ，它将为你在 `master` 上创建一个你自己的(user)的个人主页项目。下面你就可以把它 clone 到本地进行开发与修改：
+{% highlight bash %}
+$ cd workspace
+$ git clone https://github.com/YOUR_USER_NAME/YOUR_USER_NAME.github.io
+{% endhighlight %}
+
+### <span style="font-size: 120%; color: gray; font-weight: 600;">&#9313;</span> 本地构筑个人博客
+
+[Github Pages][github-pages] 内置支持 [Jekyll][jekyll] 博客引擎，你可以只专注于按照 [jekyll][jekyll] 的规范写 [markdown](https://en.wikipedia.org/wiki/Markdown)，而不用关注存储等其他细节。
+
+为了更好地写博客，你需要先在本地安装一下 [jekyll](http://jekyllrb.com/docs/installation/) ，细节可以参加其官方文档；然后在本地生成你初始的 blog:
+{% highlight bash %}
+$ cd tmpdir
+$ jekyll new YOUR_USER_NAME.github.io
+{% endhighlight %}
+这时你可以在本地运行你博客：
+{% highlight bash %}
+$ cd tmpdir/YOUR_USER_NAME.github.io
+$ jekyll serve
+{% endhighlight %}
+打开浏览器 [http://127.0.0.1:4000](http://127.0.0.1:4000) , 就可以看到它初始的样子了。
+
+### <span style="font-size: 120%; color: gray; font-weight: 600;">&#9314;</span> 同步到 [github][github]
+
+先把你刚刚生成的本地文件拷贝到你的博客页工作目录：
+{% highlight bash %}
+$ cp -rf tmpdir/YOUR_USER_NAME.github.io/* workspace/YOUR_USER_NAME.github.io
+{% endhighlight %}
+然后在 YOUR_USER_NAME.github.io 工作目录中，将其同步到 [github][github] 上去：
+{% highlight bash %}
+$ cd workspace/YOUR_USER_NAME.github.io
+$ git add .
+$ git commit -m "init github user blog page"
+$ git push origin master
+{% endhighlight %}
+> 注意：这里如果你的账号开启了 [Two-Factor Authentication](https://github.com/settings/security)，那么你 push 的时候用户名是你的 Two-Factor Auth 的用户名，密码是当时生成的 token，不可不知～
+
+这时再 [http://YOUR_USER_NAME.github.io][xzturn] 看一下，是不是你的博客主页已经生效了 :)
+
+[github]:       https://github.com
+[github-pages]: https://pages.github.com
+[jekyll]:       https://jekyllrb.com
+[xzturn]:       https://xzturn.github.io
