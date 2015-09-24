@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Docker安装备忘"
-date:   2015-09-24 21:30:46
+date:   2015-08-24 11:30:46
 categories: docker
 ---
 

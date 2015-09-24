@@ -2,7 +2,7 @@
 layout: post
 title:  "Github协作开发与个人博客搭建"
 date:   2015-09-22 12:58:41
-categories: gitbug blog
+categories: github blog
 ---
 作为一个程序员，要想快速提升自己，兴趣驱动地参与到 [open-source](https://en.wikipedia.org/wiki/Open_source) 中是一个非常棒方式。本文仅是抛砖引玉，简单记录一下在 [github][github] 上进行协作开发与搭建个人博客的方式。
 
