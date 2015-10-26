@@ -75,7 +75,7 @@ $ cd && mv go go1.4
 {% highlight bash %}
 $ git clone https://go.googlesource.com/go
 $ cd go
-$ git checkout go1.5
+$ git checkout go1.5.1
 {% endhighlight %}
 (2) 编译
 {% highlight bash %}
@@ -87,7 +87,7 @@ $ go version
 {% endhighlight %}
 此时你应该能看到如下信息
 {% highlight bash %}
-go version go1.5 linux/amd64
+go version go1.5.1 linux/amd64
 {% endhighlight %}
 (4) (Optional) 源码到 GOROOT 下并删除 go1.4
 {% highlight bash %}
