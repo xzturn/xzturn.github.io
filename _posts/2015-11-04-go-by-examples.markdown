@@ -29,10 +29,10 @@ func main() {
 {% endhighlight %}
 
 ## 几种典型的 [Go][go] 并发模式
-1. Generator
-2. Timeout
-3. Ticker
-4. Pipelines and cancellation
+1. [Generator](https://github.com/xzturn/go-by-example/blob/master/generator.go)
+2. [Timeout](https://github.com/xzturn/go-by-example/blob/master/timeout.go)
+3. [Ticker](https://github.com/xzturn/go-by-example/blob/master/ticker.go)
+4. [Pipelines and cancellation](https://github.com/xzturn/go-by-example/blob/master/pipeline.go)
 5. TBD ...
 
 详见 [repo][go-by-example] 代码吧。
