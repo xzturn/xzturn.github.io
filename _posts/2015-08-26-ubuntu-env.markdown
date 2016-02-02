@@ -31,7 +31,7 @@ categories: ubuntu
 
 <span style="font-size: 100%; color: black; font-weight: 100;">&#120783;</span>. [搜狗拼音输入法Linux版](http://pinyin.sogou.com/linux/?r=pinyin)
 
-> 下载后直接 deb 安装，重启系统后就OK了
+> 下载后直接 deb 安装，重启系统后就OK了；其源为[`ppa:fcitx-team/nightly`](http://pinyin.sogou.com/linux/help.php)
 
 <span style="font-size: 100%; color: black; font-weight: 100;">&#120784;</span>. [google chrome](https://chrome.google.com)
     
@@ -41,13 +41,40 @@ categories: ubuntu
 
 <span style="font-size: 100%; color: black; font-weight: 100;">&#120785;</span>. 更新源设置
 
-> 一般增加 **网易源** 和 **阿里云** 的源
+> 一般增加 **网易源** 和 **官方** 的源
+
+```
+# offical source
+deb http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+
+# 163 source
+deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
+
+```
 
 ## 开发环境构建
 
 <span style="font-size: 100%; color: black; font-weight: 100;">&#120783;</span>. 基础开发工具
 
-    sudo apt-get install build-essential libstdc++6
+    sudo apt-get install build-essential libstdc++6 cmake maven
 
 <span style="font-size: 100%; color: black; font-weight: 100;">&#120784;</span>. 升级 gcc 到 4.9.2（支持 C++11）
 
@@ -57,7 +84,7 @@ categories: ubuntu
 
 <span style="font-size: 100%; color: black; font-weight: 100;">&#120785;</span>. 安装代码管理工具
 
-    sudo atp-get install git subversion mercurial
+    sudo apt-get install git subversion mercurial
 
 <span style="font-size: 100%; color: black; font-weight: 100;">&#120786;</span>. 翻墙还是必不可少的，推荐免费的 [goagent](https://github.com/goagent)
 
